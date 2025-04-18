@@ -40,12 +40,18 @@ class UserController extends Controller
             ->with('success', 'User successfully added');
     }
 
+    public function edit(User $user)
+    {
+        return view('user.edit', compact('user'));
+    }
+
+
     public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id, 
-            'password' => 'nullable|min:8|confirmed',
+            'password' => 'nullable|min:8',
             'role' => 'required|in:admin,staff' // Fixed typo from 'stuf' to 'staff'
         ]);
 

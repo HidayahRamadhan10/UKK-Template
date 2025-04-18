@@ -24,10 +24,10 @@ class UserSeeder extends Seeder
         }
 
         // Cek apakah email staf sudah ada
-        if (!User::where('email', 'staf@gmail.com')->exists()) {
+        if (!User::where('email', 'staf2@gmail.com')->exists()) {
             User::create([
                 'name' => 'Staf Biasa',
-                'email' => 'staf@gmail.com',
+                'email' => 'staf2@gmail.com',
                 'password' => Hash::make('123'),
                 'role' => 'staf',
                 'email_verified_at' => now(),

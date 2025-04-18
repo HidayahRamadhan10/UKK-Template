@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::post('/user', [UserController::class, 'store'])->name('user.store');
     Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
     // User management routes (only accessible by a

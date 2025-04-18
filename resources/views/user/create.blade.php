@@ -27,8 +27,9 @@
                     <div class="mb-4">
                         <label for="role" class="block text-sm font-semibold text-gray-700">Role <span class="text-red-500">*</span></label>
                         <select name="role" id="role" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
-                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="stuf" {{ old('role') == 'stuf' ? 'selected' : '' }}>Stuf</option>
+                            <option value="" selected disabled hidden>Pilih Role</option>
+                            <option value="admin" {{ old('role', $user->role ?? '') == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="staff" {{ old('role', $user->role ?? '') == 'staff' ? 'selected' : '' }}>Staff</option>
                         </select>
                         @error('role')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

@@ -5,12 +5,12 @@
         <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Edit Pengguna</h2>
             
-            <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+            <form action="{{ route('user.update', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="mb-4">
-                        <label for="name" class="block text-sm font-semibold text-gray-700">Nama</label>
+                        <label for="name" class="block text-sm font-semibold text-gray-700">Nama <span class="text-red-500">*</label>
                         <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
                         @error('name')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="email" class="block text-sm font-semibold text-gray-700">Email</label>
+                        <label for="email" class="block text-sm font-semibold text-gray-700">Email <span class="text-red-500">*</label>
                         <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
                         @error('email')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -34,11 +34,12 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="role" class="block text-sm font-semibold text-gray-700">Role</label>
+                        <label for="role" class="block text-sm font-semibold text-gray-700">Role <span class="text-red-500">*</label>
                         <select name="role" id="role" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
-                            <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="stuf" {{ old('role', $user->role) == 'stuf' ? 'selected' : '' }}>Stuf</option>
-                        </select>
+                            <option value="" selected disabled hidden>Pilih Role</option>
+                            <option value="admin" {{ old('role', $user->role ?? '') == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="staff" {{ old('role', $user->role ?? '') == 'staff' ? 'selected' : '' }}>Staff</option>
+                        </select>                                             
                         @error('role')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
